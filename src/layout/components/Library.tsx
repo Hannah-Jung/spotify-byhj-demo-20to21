@@ -9,7 +9,6 @@ import { useInView } from 'react-intersection-observer'
 import { useEffect, useState } from 'react'
 import type { SimplifiedPlaylist } from '../../models/playlist'
 import { useNavigate } from 'react-router'
-import LibraryHead from './LibraryHead'
 
 const Library = () => {
   const { ref, inView } = useInView({rootMargin: '0px 0px 500px 0px', threshold: 0});
