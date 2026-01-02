@@ -34,24 +34,38 @@ const PlaylistDetailPage = () => {
 
   if (isLoading) return <LoadingSpinner/>
   // if (error) return <ErrorMessage errorMessage={error.message}/>
-  if (error) {
-  if ((error as any)?.error?.status === 401 || !userProfile) {
+//   if (error) {
+//   if ((error as any)?.error?.status === 401 || !userProfile) {
+//     return (
+//       <Box
+//         display="flex"
+//         alignItems="center"
+//         justifyContent="center"
+//         height="100%"
+//         flexDirection="column"
+//       >
+//         <ErrorOutlineIcon sx={{ fontSize: 64, color: '#1ed760', mb: '20px' }} />
+//         <Typography variant="h2" fontWeight={700} mb="20px">
+//           Please log in again.
+//         </Typography>
+//       </Box>
+//     );
+//   }
+//   return <ErrorMessage errorMessage={error.message} />; 
+// }
+if (error) {
+  if (error.message?.includes('401') || 
+      error.message?.includes('Unauthorized') || 
+      !userProfile) {
     return (
-      <Box
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-        height="100%"
-        flexDirection="column"
-      >
-        <ErrorOutlineIcon sx={{ fontSize: 64, color: '#1ed760', mb: '20px' }} />
-        <Typography variant="h2" fontWeight={700} mb="20px">
-          Please log in again.
-        </Typography>
+      <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" height="100vh">
+        <ErrorOutlineIcon sx={{ fontSize: 64, color: '#1ed760', mb: 2 }} />
+        <Typography variant="h4" mb={2}>Please log in again.</Typography>
+        <Typography>Login is required to view the playlist.</Typography>
       </Box>
     );
   }
-  return <ErrorMessage errorMessage={error.message} />; 
+  return <ErrorMessage errorMessage={error.message} />;
 }
   if (!playlist) return <div>Playlist not found</div> 
 
