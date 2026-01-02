@@ -54,14 +54,17 @@ const PlaylistDetailPage = () => {
 //   return <ErrorMessage errorMessage={error.message} />; 
 // }
 if (error) {
-  if (error.message?.includes('401') || 
-      error.message?.includes('Unauthorized') || 
-      !userProfile) {
+  console.log("Full error:", error);
+  if (
+    error.message?.includes('401') || 
+    error.message?.includes('Unauthorized') ||
+    !userProfile
+  ) {
     return (
       <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" height="100vh">
-        <ErrorOutlineIcon sx={{ fontSize: 64, color: '#1ed760', mb: 2 }} />
+        <ErrorOutlineIcon sx={{ fontSize: 80, color: '#1ed760', mb: 3 }} />
         <Typography variant="h4" mb={2}>Please log in again.</Typography>
-        <Typography>Login is required to view the playlist.</Typography>
+        <Typography mb={4}>Login is required to view playlists.</Typography>
       </Box>
     );
   }
